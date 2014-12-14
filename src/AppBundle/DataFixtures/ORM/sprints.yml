@@ -1,0 +1,35 @@
+AppBundle\Entity\SprintImpl:
+    sprint_1:
+        status: "CLOSE"
+        effectiveClosedAt: <dateTimeBetween($startDate='-28days', $endDate='-28days')>
+        expectedClosedAt: <dateTimeBetween($startDate='-28days', $endDate='-28days')>
+    sprint_2:
+        status: "CLOSE"
+        effectiveClosedAt: <dateTimeBetween($startDate='-14days', $endDate='-14days')>
+        expectedClosedAt: <dateTimeBetween($startDate='-14days', $endDate='-14days')>
+    sprint_3:
+        status: "OPEN"
+        expectedClosedAt: <dateTimeBetween($startDate='now', $endDate='now')>
+AppBundle\Entity\IssueImpl:
+    issue{1..15}:
+        title: Issue <current()>
+        description: <text()>
+        sprint: @sprint_1
+        status: CLOSE
+        createdAt: <dateTimeBetween($startDate='-30days', $endDate='-30days')>
+        doneAt: <dateTimeBetween($startDate='-29days', $endDate='-29days')>
+        closedAt: <dateTimeBetween($startDate='-28days', $endDate='-28days')>
+    issue{16..20}:
+        title: Issue <current()>
+        description: <text()>
+        sprint: @sprint_2
+        status: CLOSE
+        createdAt: <dateTimeBetween($startDate='-16days', $endDate='-16days')>
+        doneAt: <dateTimeBetween($startDate='-15days', $endDate='-15days')>
+        closedAt: <dateTimeBetween($startDate='-14days', $endDate='-14days')>
+    issue{21..30}:
+        title: Issue <current()>
+        description: <text()>
+        sprint: @sprint_3
+        status: <status()>
+        doneAt: <doneAt()>

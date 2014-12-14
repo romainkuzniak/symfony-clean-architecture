@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>SPRINT {{ vm.sprintId }}</h1>
+    <h2>Status : {{ vm.sprintStatus }}</h2>
+    <h2>Creation date : {{ vm.sprintCreatedAt | localizeddate }}</h2>
+    <h2>Expected closed date : {{ vm.sprintExpectedClosedAt |localizeddate }}</h2>
+    {% if vm.sprintEffectiveClosedAt is not empty %}
+        <h2>Effective closed date : {{ vm.sprintEffectiveClosedAt |localizeddate }}</h2>
+    {% endif %}
+
+    <form action="{{ path('close_sprint', {'id': vm.sprintId}) }}" method="post">
+        <input type="submit" value="Close"/>
+    </form>
+{% endblock %}

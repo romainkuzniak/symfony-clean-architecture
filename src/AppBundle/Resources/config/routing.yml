@@ -1,0 +1,31 @@
+show_sprint:
+    path: /sprints/{id}
+    defaults:
+        _controller: AppBundle:Web/Sprint/ShowSprint:show
+    requirements:
+        id: \d+
+        _method: GET
+
+close_sprint:
+    path: /sprints/{id}/close
+    defaults:
+        _controller: AppBundle:Web/Sprint/CloseSprint:close
+    requirements:
+        id: \d+
+        _method: POST
+
+api_get_sprint:
+    path: /api/sprints/{id}
+    defaults:
+        _controller: AppBundle:Api/Sprint/GetSprint:get
+    requirements:
+        id: \d+
+        _method: GET
+
+api_close_sprint:
+    path: /api/sprints/{id}/close
+    defaults:
+        _controller: AppBundle:Api/Sprint/CloseSprint:close
+    requirements:
+        id: \d+
+        _method: POST

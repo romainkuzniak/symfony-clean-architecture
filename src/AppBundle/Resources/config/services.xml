@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="gateway.sprint" factory-service="doctrine.orm.entity_manager" factory-method="getRepository" class="AppBundle\Repository\SprintRepository">
+            <argument>AppBundle\Entity\SprintImpl</argument>
+        </service>
+        <service id="use_case.sprint.get_sprint_request_builder" class="BusinessRules\UseCases\Sprint\DTO\GetSprintRequestBuilderImpl"/>
+        <service id="use_case.sprint.sprint_response_assembler" class="BusinessRules\UseCases\Sprint\DTO\SprintResponseAssemblerImpl"/>
+        <service id="use_case.sprint.get_sprint" class="BusinessRules\UseCases\Sprint\GetSprint">
+            <call method="setSprintGateway">
+                <argument type="service" id="gateway.sprint"/>
+            </call>
+            <call method="setSprintResponseAssembler">
+                <argument type="service" id="use_case.sprint.sprint_response_assembler"/>
+            </call>
+        </service>
+
+        <service id="use_case.sprint.close_expected_sprint_request_builder" class="BusinessRules\UseCases\Sprint\DTO\CloseExpectedSprintRequestBuilderImpl"/>
+        <service id="use_case.sprint.close_expected_sprint_response_builder" class="BusinessRules\UseCases\Sprint\DTO\CloseExpectedSprintResponseBuilderImpl"/>
+        <service id="use_case.sprint.close_expected_sprint" class="BusinessRules\UseCases\Sprint\CloseExpectedSprint">
+            <call method="setSprintGateway">
+                <argument type="service" id="gateway.sprint"/>
+            </call>
+            <call method="setCloseExpectedSprintResponseBuilder">
+                <argument type="service" id="use_case.sprint.close_expected_sprint_response_builder"/>
+            </call>
+            <tag name="openclassrooms.use_case"/>
+        </service>
+
+        <service id="use_case.sprint.close_sprint_request_builder" class="BusinessRules\UseCases\Sprint\DTO\CloseSprintRequestBuilderImpl"/>
+        <service id="use_case.sprint.close_sprint_response_builder" class="BusinessRules\UseCases\Sprint\DTO\CloseSprintResponseBuilderImpl"/>
+        <service id="use_case.sprint.close_sprint" class="BusinessRules\UseCases\Sprint\CloseSprint">
+            <call method="setSprintGateway">
+                <argument type="service" id="gateway.sprint"/>
+            </call>
+            <call method="setCloseSprintResponseBuilder">
+                <argument type="service" id="use_case.sprint.close_sprint_response_builder"/>
+            </call>
+            <tag name="openclassrooms.use_case"/>
+        </service>
+    </services>
+</container>

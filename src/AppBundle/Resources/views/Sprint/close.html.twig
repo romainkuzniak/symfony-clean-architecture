@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Sprint : {{ vm.sprintId }}</h1>
+    <h2>Average Closed Issues (all previous sprints): {{ vm.averageClosedIssues }}</h2>
+    <h2>Closed Issues : {{ vm.closedIssuesCount }}</h2>
+{% endblock %}
